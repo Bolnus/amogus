@@ -37,18 +37,22 @@
 .buttonLine
 {
   width: 100%;
-  height: 50%;
+  height: 100%;
   /* border: 3px solid #444446; */
+  justify-content: center;
+  display: flex;
+  margin: 2px;
 }
 
 .pushButton
 {
   background: grey;
-  width: 19%;
+  width: 20%;
   height: 100%;
   font-family: monospace;
   font-weight: bold;
   font-size: 2em;
+  margin: 2px;
 }
 
 .pushButton:hover
@@ -60,6 +64,10 @@
 {
   margin-top: 30%;
   margin-bottom: 30%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-evenly;
 }
 
 #closeButton
@@ -326,3 +334,10 @@ li a
 {
   border-left: 3px solid white;
 }
+
+/* .test{
+  background-color: #ddd;
+  border-right: 50%;
+  width: 50px;
+  height: 50px;
+} */

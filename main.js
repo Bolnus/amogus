@@ -1,5 +1,6 @@
 var http = require("http");
 var fileReader = require("fs");
+var isBinary = 0;
 
 var server = http.createServer(function(request, response)
 {
@@ -33,6 +34,7 @@ var server = http.createServer(function(request, response)
   default:
     if(req.endsWith(".png"))
     {
+      //isBinary=1;
       var img = fileReader.readFileSync(__dirname+req);
       response.writeHead(200,{"Content-Type": "image/png"});
       response.end(img, 'binary');
@@ -40,6 +42,7 @@ var server = http.createServer(function(request, response)
     }
     else if(req.endsWith(".ico"))
     {
+      //isBinary=1;
       var img = fileReader.readFileSync(__dirname+req);
       response.writeHead(200,{"Content-Type": "image/ico"});
       response.end(img, 'binary');
@@ -56,6 +59,8 @@ var server = http.createServer(function(request, response)
   // var readStream = fileReader.createReadStream(__dirname+"/index.html","utf-8");
   readStream.on('open', function ()
   {
+    if(isBinary==1)
+      response.end(img, 'binary');
     readStream.pipe(response);
   });
   readStream.on('error', function ()
