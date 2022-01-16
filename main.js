@@ -1,6 +1,33 @@
 var http = require("http");
 var fileReader = require("fs");
+
+var fullFileText = "";
+var cfgStrings = fullFileText.split("\r\n");
 var isBinary = 0;
+var portNumber = 80;
+var serverIP = "";
+
+try
+{
+  fullFileText = fileReader.readFileSync("settings.txt", "UTF8");
+}
+catch (err)
+{
+  if (err.code === "ENOENT")
+    console.log("settings.txt is required for this server");
+  else
+    throw err;
+  console.log("switching off...");
+  process.exit(1);
+}
+
+for(var i=0;i<cfgStrings.length;i++)
+{
+  cfgStrings[i] = cfgStrings[i].replace(/ /g,'');
+  console.log(cfgStrings[i]);
+  if(cfgStrings[i].startsWith("external_ip="))
+    serverIP = cfgStrings[i].split("=")[1].replace(/\n/g,'');
+}
 
 var server = http.createServer(function(request, response)
 {
@@ -74,6 +101,6 @@ var server = http.createServer(function(request, response)
   //response.end("Пока заебал");
 });
 
-var portNumber = 80;
-server.listen(portNumber,"172.16.3.3");
+
+server.listen(portNumber,serverIP);
 console.log("Listening to port "+portNumber);
