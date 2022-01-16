@@ -49,6 +49,7 @@
   background: grey;
   width: 20%;
   height: 100%;
+  min-height: 1em;
   font-family: monospace;
   font-weight: bold;
   font-size: 2em;

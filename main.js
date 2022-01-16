@@ -6,6 +6,8 @@ var cfgStrings = fullFileText.split("\r\n");
 var isBinary = 0;
 var portNumber = 80;
 var serverIP = "";
+var date;
+var img;
 
 try
 {
@@ -40,6 +42,8 @@ var server = http.createServer(function(request, response)
   case "/":
     response.writeHead(200,{"Content-Type": "text/html; charset=utf-8"});
     readStream = fileReader.createReadStream(__dirname+"/index.html","utf-8");
+    date = new Date();
+    console.log(date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
     break;
   case "/css/main.css":
     response.writeHead(200,{"Content-Type": "text/css; charset=utf-8"});
@@ -62,7 +66,7 @@ var server = http.createServer(function(request, response)
     if(req.endsWith(".png"))
     {
       //isBinary=1;
-      var img = fileReader.readFileSync(__dirname+req);
+      img = fileReader.readFileSync(__dirname+req);
       response.writeHead(200,{"Content-Type": "image/png"});
       response.end(img, 'binary');
       readStream = fileReader.createReadStream(__dirname+req);
@@ -70,7 +74,7 @@ var server = http.createServer(function(request, response)
     else if(req.endsWith(".ico"))
     {
       //isBinary=1;
-      var img = fileReader.readFileSync(__dirname+req);
+      img = fileReader.readFileSync(__dirname+req);
       response.writeHead(200,{"Content-Type": "image/ico"});
       response.end(img, 'binary');
       readStream = fileReader.createReadStream(__dirname+req);
