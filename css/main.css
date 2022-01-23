@@ -37,7 +37,7 @@
 .buttonLine
 {
   width: 100%;
-  height: 100%;
+  height: 50%;
   /* border: 3px solid #444446; */
   justify-content: center;
   display: flex;
@@ -336,9 +336,40 @@ li a
   border-left: 3px solid white;
 }
 
-/* .test{
-  background-color: #ddd;
-  border-right: 50%;
-  width: 50px;
-  height: 50px;
-} */
+#records
+{
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-content: center; */
+  overflow-y: scroll;
+}
+
+#recordsTable
+{
+  border: 1;
+  font-size: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  border-style: hidden;
+
+}
+
+#recordsTable td
+{
+  border: 3px solid white;
+  padding: 0.5em;
+  color: #b9b9ba;
+}
+
+#recordsTable th
+{
+  border: 3px solid white;
+  padding: 0.5em;
+
+}
+
+#tableCaption
+{
+  padding: 1em;
+}
